@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
@@ -14,15 +13,15 @@
 <!-- Dependencies -->
 <project path="hardware/mithorium-4.19/display" name="frnwot/android_vendor_qcom_opensource_display-commonsys-intf" remote="github" revision="vic" />
 <project path="hardware/mithorium-4.19/display-commonsys" name="MI439-CLO/android_vendor_qcom_opensource_display-commonsys" remote="github" revision="vic" />
-   
+   
 <!-- GPS -->
 <project path="hardware/qcom-caf/gps-legacy" name="MI439-CLO/android_hardware_qcom_gps" remote="github" revision="uvite-legacy-component" />
-   
+   
 <!-- Device -->
 <project path="device/xiaomi/mi439" name="frnwot/device_xiaomi_mi439" remote="github" revision="15" />
 <project path="device/qcom/common" name="MI439-CLO/device_qcom_common" remote="github" revision="vic-qpr1" />
 
-<!--- Vendor Blobs -->
+<!-- Vendor Blobs -->
 <project path="vendor/xiaomi/mi439" name="LOLZKERNEL/proprietary_vendor_xiaomi_mi439-4.19" remote="github" clone-depth="1" revision="vic" />
 <project path="vendor/qcom/common" name="LOLZKERNEL/proprietary_vendor_qcom_common" remote="github" clone-depth="1" revision="vauxite-qpr1" />
 
