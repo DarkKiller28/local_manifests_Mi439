@@ -1,3 +1,3 @@
 ```
-git clone https://github.com/PhantomHollow/local_manifests .repo/local_manifests -b a13
+git clone https://github.com/frnwot/local_manifests_Mi439 .repo/local_manifests -b 15
 ```
