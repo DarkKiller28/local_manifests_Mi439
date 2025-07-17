@@ -19,7 +19,7 @@
            fetch="https://gitlab.com/MindTheGapps"
            revision="vic" />
   <remote  name="frn-development"
-           fetch="https://gitlab.com/frn-development"
+           fetch="https://github.com/frn-development"
            revision="16" />
   <!-- <remote  name="mindthegapps"
            fetch="https://gitlab.com/MindTheGapps"
