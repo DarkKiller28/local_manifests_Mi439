@@ -60,7 +60,8 @@
     <!-- disable it. It overrrides Android.bp -->
     <!-- <linkfile src="guard-qcom-qssi-display-lineage-19.1.bp" dest="hardware/qcom-caf/msm8937/display/Android.bp" /> -->
     <linkfile src="guard-qcom-qssi-display.mk"              dest="hardware/qcom-caf/msm8937/display/Android.mk" />
-  </project>
+    <linkfile src="guard-generic.mk" dest="hardware/qcom-caf/msm8937/audio/Android.mk" />
+    </project>
 
  <!-- Hardware - display-commonsys-intf -->
   <project path="hardware/qcom-caf/msm8937/display/display" name="android_vendor_qcom_opensource_display-commonsys-intf" groups="qcom,pdk-qcom" remote="los" revision="lineage-22.2"/>
