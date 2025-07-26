@@ -37,7 +37,7 @@
   <remove-project path="vendor/qcom/opensource/libfmjni"/>
   <project path="vendor/qcom/opensource/libfmjni" name="android_vendor_qcom_opensource_libfmjni" groups="qcom" remote="tavukkdoner" revision="lineage-22.2" />
 
-  <remove-project path="hardware/lineage/interfaces" />
+  <!--remove-project path="hardware/lineage/interfaces" />
   <project path="hardware/lineage/interfaces" name="android_hardware_lineage_interfaces" remote="tavukkdoner" revision="lineage-22.2" />
 
   <!-- Common -->
