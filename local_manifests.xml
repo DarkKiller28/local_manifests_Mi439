@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+  <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote  name="mi-thorium"
            fetch="https://github.com/Mi-Thorium"
@@ -9,22 +9,19 @@
   <remote  name="tavukkdoner"
            fetch="https://github.com/tavukkdoner"
            revision="lineage-22.2" />
-  <remote  name="frnwot"
-           fetch="https://github.com/frnwot"
-           revision="lineage-22.2" />
   <remote  name="togofire"
            fetch="https://github.com/TogoFire"
            revision="v4a" />
-  <remote  name="mindthegapps"
-           fetch="https://gitlab.com/MindTheGapps"
-           revision="vic" />
+  <remote  name="frnwot"
+           fetch="https://github.com/frnwot"
+           revision="lineage-22.2" />
   <remote  name="frn-development"
            fetch="https://github.com/frn-development"
            revision="16" />
   <!-- <remote  name="mindthegapps"
            fetch="https://gitlab.com/MindTheGapps"
            revision="vic" /> -->
-
+  
   
   <!-- Mithorium local manifest with modifications -->
   <!-- Credits 0xCAFEBABE -->
@@ -32,30 +29,31 @@
   <!-- https://github.com/Mi-Thorium/local_manifests and https://github.com/Mi-Thorium/kernel_manifest/tree/mithorium-4.19 -->
 
   <remove-project path="system/memory/lmkd" />
-  <project path="system/memory/lmkd" name="android_system_memory_lmkd" groups="pdk" remote="tavukkdoner" revision="15.0-final" />
+  <project path="system/memory/lmkd" name="lmkd16" groups="pdk" remote="tavukkdoner" revision="16" />
   
   <remove-project path="vendor/qcom/opensource/libfmjni"/>
   <project path="vendor/qcom/opensource/libfmjni" name="android_vendor_qcom_opensource_libfmjni" groups="qcom" remote="tavukkdoner" revision="lineage-22.2" />
 
-  <!--remove-project path="hardware/lineage/interfaces" />
-  <project path="hardware/lineage/interfaces" name="android_hardware_lineage_interfaces" remote="tavukkdoner" revision="lineage-22.2" />
-
+  <!-- 
+  <remove-project path="hardware/lineage/interfaces" />
+  <project path="hardware/lineage/interfaces" name="android_hardware_lineage_interfaces" remote="tavukkdoner" revision="lineage-22.2" /> -->
+  
   <!-- Common -->
-  <project path="device/xiaomi/mithorium-common" name="android_device_xiaomi_mithorium-common"     groups="device" remote="frnwot" revision="16"/>
+  <project path="device/xiaomi/mithorium-common" name="android_device_xiaomi_mithorium-common"     groups="device" remote="tavukkdoner" revision="a16/infinity"/>
   <project path="vendor/xiaomi/mithorium-common" name="proprietary_vendor_xiaomi_mithorium-common" groups="device" remote="mi-thorium"/>
   <project path="vendor/xiaomi/mithorium-common-graphics" name="proprietary_vendor_xiaomi_mithorium-common-graphics" groups="device" remote="mi-thorium" revision="a15_qpr2/master"/>
 
  <!-- Common - Kernel 4.19 -->
   <project path="vendor/xiaomi/mithorium-common-4.19" name="proprietary_vendor_xiaomi_mithorium-common-4.19" groups="device" remote="tavukkdoner" revision="a15/master-final" />
 
-  <!-- Hardware -->
+ <!-- Hardware -->
   <project path="hardware/qcom-caf/msm8937/common" name="android_hardware_mithorium_common" groups="device" remote="tavukkdoner" revision="lineage-msm8937">
     <linkfile src="_Android.mk" dest="hardware/qcom-caf/msm8937/Android.mk" />
     <linkfile src="mithorium_qcom_hals.mk" dest="hardware/qcom-caf/msm8937/mithorium_qcom_hals.mk" />
-    
+
     <linkfile src="guard-generic.bp" dest="hardware/qcom-caf/msm8937/audio/Android.bp" />
 
-    <!-- disable it. It overrrides Android.bp -->
+    <!-- It overrides Android.bp -->
     <!-- <linkfile src="guard-qcom-qssi-display-lineage-19.1.bp" dest="hardware/qcom-caf/msm8937/display/Android.bp" /> -->
     <linkfile src="guard-qcom-qssi-display.mk"              dest="hardware/qcom-caf/msm8937/display/Android.mk" />
   </project>
@@ -66,7 +64,7 @@
  <!-- Hardware - LA.UM.9.6.3 -->
   <project path="hardware/qcom-caf/msm8937/audio" name="android_hardware_qcom_audio_mithorium" groups="device" remote="tavukkdoner" revision="mithorium/msm8937"/>
   <project path="hardware/qcom-caf/msm8937/media" name="android_hardware_qcom_media_mithorium" groups="device" remote="tavukkdoner" revision="mithorium/msm8937"/>
-  <project path="hardware/qcom-caf/msm8937/display" name="android_hardware_qcom_display_mithorium" groups="device" remote="frnwot" revision="mithorium/msm8937-test"/>
+  <project path="hardware/qcom-caf/msm8937/display" name="android_hardware_qcom_display_mithorium" groups="device" remote="tavukkdoner" revision="mithorium/msm8937"/>
   
  <!-- Mi439 -->
   <project path="device/xiaomi/Mi439"  name="android_device_xiaomi_Mi439"     groups="device" remote="frn-development" revision="16"/>
