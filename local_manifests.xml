@@ -1,35 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote  name="mi-thorium"
+           fetch="https://github.com/Mi-Thorium"
+           revision="a15/master" />
+  <remote  name="los"
+           fetch="https://github.com/LineageOS"
+           revision="lineage-22.2" />
+  <remote  name="tavukkdoner"
+           fetch="https://github.com/tavukkdoner"
+           revision="lineage-22.2" />
 
-  <!-- 🔧 Define 'github' remote -->
-  <remote name="github"
-          fetch="https://github.com/" />
+    <remote  name="togofire"
+           fetch="https://github.com/TogoFire"
+           revision="v4a" />
+  <!-- <remote  name="mindthegapps"
+           fetch="https://gitlab.com/MindTheGapps"
+           revision="vic" /> -->
+  
+  
+  <!-- Mithorium local manifest with modifications -->
+  <!-- Credits 0xCAFEBABE -->
+  <!-- Credits tavukkdoner -->
+  <!-- https://github.com/Mi-Thorium/local_manifests and https://github.com/Mi-Thorium/kernel_manifest/tree/mithorium-4.19 -->
 
-  <!-- Kernel -->
-  <project path="kernel/xiaomi/sdm439" name="Jprimero15/android_kernel_xiaomi_sdm439-4.19" remote="github" clone-depth="1" revision="vic" />
+  <remove-project path="system/memory/lmkd" />
+  <project path="system/memory/lmkd" name="lmkd16" groups="pdk" remote="tavukkdoner" revision="16" />
+  
+  <remove-project path="vendor/qcom/opensource/libfmjni"/>
+  <project path="vendor/qcom/opensource/libfmjni" name="android_vendor_qcom_opensource_libfmjni" groups="qcom" remote="tavukkdoner" revision="lineage-22.2" />
 
-  <!-- HALs -->
-  <project path="hardware/mithorium-4.19" name="MI439-CLO/android_hardware_mithorium-4.19" remote="github" revision="vic" />
-  <project path="hardware/mithorium-4.19/audio-hal" name="frnwot/android_hardware_qcom_audio_mithorium" remote="github" revision="mithorium/msm8937-test" />
-  <project path="hardware/mithorium-4.19/display-hal" name="frnwot/android_hardware_qcom_display_mithorium" remote="github" revision="mithorium/msm8937" />
-  <project path="hardware/mithorium-4.19/media-hal" name="frnwot/android_hardware_qcom_media_mithorium" remote="github" revision="mithorium/msm8937" />
+  <!-- 
+  <remove-project path="hardware/lineage/interfaces" />
+  <project path="hardware/lineage/interfaces" name="android_hardware_lineage_interfaces" remote="tavukkdoner" revision="lineage-22.2" /> -->
+  
+  <!-- Common -->
+  <project path="device/xiaomi/mithorium-common" name="android_device_xiaomi_mithorium-common"     groups="device" remote="tavukkdoner" revision="a16/infinity"/>
+  <project path="vendor/xiaomi/mithorium-common" name="proprietary_vendor_xiaomi_mithorium-common" groups="device" remote="mi-thorium"/>
+  <project path="vendor/xiaomi/mithorium-common-graphics" name="proprietary_vendor_xiaomi_mithorium-common-graphics" groups="device" remote="mi-thorium" revision="a15_qpr2/master"/>
 
-  <!-- Dependencies -->
-  <project path="hardware/mithorium-4.19/display" name="frnwot/android_vendor_qcom_opensource_display-commonsys-intf" remote="github" revision="vic" />
-  <project path="hardware/mithorium-4.19/display-commonsys" name="MI439-CLO/android_vendor_qcom_opensource_display-commonsys" remote="github" revision="vic" />
-   
-  <!-- GPS -->
-  <project path="hardware/qcom-caf/gps-legacy" name="MI439-CLO/android_hardware_qcom_gps" remote="github" revision="uvite-legacy-component" />
-   
-  <!-- Device -->
-  <project path="device/xiaomi/mi439" name="frnwot/device_xiaomi_mi439" remote="github" revision="16" />
-  <project path="device/qcom/common" name="MI439-CLO/device_qcom_common" remote="github" revision="vic-qpr1" />
+ <!-- Common - Kernel 4.19 -->
+  <project path="vendor/xiaomi/mithorium-common-4.19" name="proprietary_vendor_xiaomi_mithorium-common-4.19" groups="device" remote="tavukkdoner" revision="a15/master-final" />
 
-  <!-- Vendor Blobs -->
-  <project path="vendor/xiaomi/mi439" name="LOLZKERNEL/proprietary_vendor_xiaomi_mi439-4.19" remote="github" clone-depth="1" revision="vic" />
-  <project path="vendor/qcom/common" name="LOLZKERNEL/proprietary_vendor_qcom_common" remote="github" clone-depth="1" revision="vauxite-qpr1" />
+ <!-- Hardware -->
+  <project path="hardware/qcom-caf/msm8937/common" name="android_hardware_mithorium_common" groups="device" remote="tavukkdoner" revision="lineage-msm8937-a16">
+    <linkfile src="_Android.mk" dest="hardware/qcom-caf/msm8937/Android.mk" />
+    <linkfile src="mithorium_qcom_hals.mk" dest="hardware/qcom-caf/msm8937/mithorium_qcom_hals.mk" />
 
-  <!-- Vendor Opensource -->
-  <project path="vendor/qcom/opensource/core-utils" name="MI439-CLO/android_vendor_qcom-opensource_core-utils" remote="github" revision="vic" />
+    <linkfile src="guard-generic.bp" dest="hardware/qcom-caf/msm8937/audio/Android.bp" />
 
+    <!-- It overrides Android.bp -->
+    <!-- <linkfile src="guard-qcom-qssi-display-lineage-19.1.bp" dest="hardware/qcom-caf/msm8937/display/Android.bp" /> -->
+    <linkfile src="guard-qcom-qssi-display.mk"              dest="hardware/qcom-caf/msm8937/display/Android.mk" />
+  </project>
+
+ <!-- Hardware - display-commonsys-intf -->
+  <project path="hardware/qcom-caf/msm8937/display/display" name="android_vendor_qcom_opensource_display-commonsys-intf" groups="qcom,pdk-qcom" remote="los" revision="lineage-22.2"/>
+
+ <!-- Hardware - LA.UM.9.6.3 -->
+  <project path="hardware/qcom-caf/msm8937/audio" name="android_hardware_qcom_audio_mithorium" groups="device" remote="tavukkdoner" revision="mithorium/msm8937-a16"/>
+  <project path="hardware/qcom-caf/msm8937/media" name="android_hardware_qcom_media_mithorium" groups="device" remote="tavukkdoner" revision="mithorium/msm8937"/>
+  <project path="hardware/qcom-caf/msm8937/display" name="android_hardware_qcom_display_mithorium" groups="device" remote="tavukkdoner" revision="mithorium/msm8937"/>
+  
+ <!-- Mi439 -->
+  <project path="device/xiaomi/Mi439"  name="android_device_xiaomi_Mi439"     groups="device" remote="tavukkdoner" revision="a16/infinity"/>
+  <project path="vendor/xiaomi/Mi439"  name="proprietary_vendor_xiaomi_Mi439" groups="device" remote="tavukkdoner" revision="a15/master-final"/>
+  
+
+ <!-- Mi439 - Kernel 4.19 -->
+  <project path="device/xiaomi/Mi439_4_19" name="android_device_xiaomi_Mi439_4_19" groups="device" remote="mi-thorium" revision="a11/master"/>
+
+ <!-- Kernel -->
+ <project path="kernel/xiaomi/mithorium-4.19/kernel" name="kernel_msm-4.19" groups="kernel" revision="mithorium/a13/a16-2" remote="tavukkdoner" >
+    <linkfile src="drivers" dest="kernel/xiaomi/mithorium-4.19/drivers" />
+  </project>
+
+  <project path="kernel/xiaomi/mithorium-4.19/dts/vendor-legacy" name="kernel_devicetree_msm-4.19" groups="dts" revision="dts/avc1" remote="tavukkdoner" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/arch/arm64/boot/dts/vendor-legacy" />
+  </project>
+  <project path="kernel/xiaomi/mithorium-4.19/dts/xiaomi-msm8937" name="kernel_devicetree_xiaomi-msm8937" groups="dts" revision="dts/mi8937/4.19/master" remote="mi-thorium" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/arch/arm64/boot/dts/xiaomi-msm8937" />
+  </project>
+  <project path="kernel/xiaomi/mithorium-4.19/dts/xiaomi-sdm439" name="kernel_devicetree_xiaomi-sdm439" groups="dts" revision="dts/mi439/4.19/master" remote="mi-thorium" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/arch/arm64/boot/dts/xiaomi-sdm439" />
+  </project>
+
+  <project path="kernel/xiaomi/mithorium-4.19/module/xiaomi-msm8937" name="kernel_techpack_xiaomi-msm8937" groups="module" revision="techpack/mi8937/4.19/master" remote="mi-thorium" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/techpack/xiaomi-msm8937" />
+  </project>
+  <project path="kernel/xiaomi/mithorium-4.19/module/xiaomi-sdm439" name="kernel_techpack_xiaomi-sdm439" groups="module" revision="techpack/mi439/4.19/master" remote="mi-thorium" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/techpack/xiaomi-sdm439" />
+  </project>
+
+  <project path="kernel/xiaomi/mithorium-4.19/module/audio-legacy" name="kernel_techpack_audio-legacy" groups="module" revision="audio/4.19/mithorium/master-16" remote="tavukkdoner">
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/techpack/audio-legacy" />
+  </project>
+  <project path="kernel/xiaomi/mithorium-4.19/module/camera-legacy" name="kernel_techpack_camera-legacy" groups="module" revision="camera/LA.UM.8.6.r1-05300-89xx.0/4.19/mithorium" remote="mi-thorium" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/techpack/camera-legacy" />
+  </project>
+  <project path="kernel/xiaomi/mithorium-4.19/module/camera-legacy-m" name="kernel_techpack_camera-legacy" groups="module" revision="camera/LA.UM.5.3-10610-89xx.0/4.19/mithorium" remote="mi-thorium" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/techpack/camera-legacy-m" />
+  </project>
+
+  <project path="kernel/xiaomi/mithorium-4.19/module/prima" name="vendor_qcom_opensource_wlan_prima" groups="module" revision="wlan/LA.UM.9.6.4/mithorium/master1"  remote="tavukkdoner" >
+    <linkfile src="." dest="kernel/xiaomi/mithorium-4.19/kernel/drivers/staging/prima" />
+  </project>
+
+  <!-- ViperFX -->
+  <project path="packages/apps/ViPER4AndroidFX" name="packages_apps_ViPER4AndroidFX" remote="togofire" revision="v4a" />
+  <!-- Google Camera Go -->
+  <project path="packages/apps/CameraGo" name="android_packages_apps_CameraGo" remote="tavukkdoner" revision="inherit" />
+  <!-- Google Gallery Go -->
+  <project path="packages/apps/GalleryGo" name="android_packages_apps_GalleryGo" remote="tavukkdoner" revision="main" />
+  <!-- MindTheGapps -->
+  <!-- <project path="vendor/gapps" name="vendor_gapps" remote="mindthegapps" revision="vic" /> -->
+  <!-- RevampedFMRadio -->
+  <project path="packages/apps/RevampedFMRadio" name="RevampedFMRadio" remote="tavukkdoner" revision="qcom"/>
+  
 </manifest>
