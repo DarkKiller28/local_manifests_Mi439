@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote  name="DarkKiller28"
-           fetch="https://github.com/DarkKiller28"
-           revision="a15_qpr2/evo" />
+  <remote  name="mi-thorium"
+           fetch="https://github.com/Mi-Thorium"
+           revision="a15_qpr2/master" />
   <remote  name="los"
            fetch="https://github.com/LineageOS"
            revision="lineage-22.2" />
-
+  <remote  name="DarkKiller28"
+           fetch="https://github.com/DarkKiller28"
+           revision="a15_qpr2/evo" />
+  
   <!-- Original mithorium local manifest no modifications -->
   <!-- Credits 0xCAFEBABE -->
   <!-- https://github.com/Mi-Thorium/local_manifests and https://github.com/Mi-Thorium/kernel_manifest/tree/mithorium-4.19 -->
